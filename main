@@ -1,0 +1,56 @@
+from tkinter import *
+ 
+
+window = Tk()
+window.title("3D Print Cost Calculator")
+window.geometry('400x200')
+
+#Label that prompts for filament type
+label1 = Label(window, text="Filament type: ")
+label1.grid(column=0, row=0)
+
+#Label that shows the calculated price
+priceLabel = Label(window, text="")
+priceLabel.grid(column=0, row=2)
+
+#Label for mass of Print
+massLabel = Label(window, text="Mass: ")
+massLabel.grid(column=0, row=1)
+
+#Input for mass of Print
+massInput = Entry(window, width=10)
+massInput.grid(column=1, row=1)
+
+selFil = StringVar(window)
+selFil.set("Select a filament")
+
+#ComboBox of different filament types
+typeBox = OptionMenu(window, selFil, "PLA", "PLA+")
+typeBox.grid(column=1, row=0)
+
+#Prices of filaments
+filPrices = {
+  "PLA" : 19.99,
+  "PLA+" : 24.99,
+  "PETG" : 24.99,
+  "ABS" : 19.99,
+  "Nylon" : 35.99,
+  "TPE" : 39.99,
+  "Wood" : 69.99,
+  "Metal" : 104.99,
+  "Conductive" : 109.99,
+  "Magnetic" : 109.99,
+  "HTPLA" : 63.99,
+  "Carbon Fiber" : 51.99
+}
+
+cost = filPrices.get(typeBox.get())
+price = (cost/1000)*massInput.get()
+
+def calculatePrice():
+  priceLabel.configure(text="hllo")
+
+btn = Button(window, text="Calculate", command=calculatePrice)
+btn.grid(column=2, row=0)
+
+window.mainloop()
