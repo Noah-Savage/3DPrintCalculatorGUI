@@ -25,7 +25,7 @@ selFil = StringVar(window)
 selFil.set("Select a filament")
 
 #ComboBox of different filament types
-typeBox = OptionMenu(window, selFil, "PLA", "PLA+")
+typeBox = OptionMenu(window, selFil, "PLA", "PLA+", "PETG", "ABS", "Nylon", "TPE", "Wood", "Metal", "Conductive", "Magnetic", "HTPLA", "Carbon Fiber")
 typeBox.grid(column=1, row=0)
 
 #Prices of filaments
@@ -44,11 +44,14 @@ filPrices = {
   "Carbon Fiber" : 51.99
 }
 
-cost = filPrices.get(typeBox.get())
-price = (cost/1000)*massInput.get()
+cost = 0
 
+#Function to show price
 def calculatePrice():
-  priceLabel.configure(text="hllo")
+	#Calculate cost of print
+  cost = (filPrices.get(str(selFil.get())))
+  price = (cost/1000.00)*int(massInput.get())
+  priceLabel.configure(text=str(round(price,2)))
 
 btn = Button(window, text="Calculate", command=calculatePrice)
 btn.grid(column=2, row=0)
