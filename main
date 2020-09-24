@@ -51,7 +51,7 @@ def calculatePrice():
 	#Calculate cost of print
   cost = (filPrices.get(str(selFil.get())))
   price = (cost/1000.00)*float(massInput.get())
-  priceLabel.configure(text=str(round(price,2)))
+  priceLabel.configure(text= "$" + str(round(price,2)))
 
 btn = Button(window, text="Calculate", command=calculatePrice)
 btn.grid(column=2, row=0)
